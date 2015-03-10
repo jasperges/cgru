@@ -60,7 +60,7 @@ class Task:
 		:param name:
 		:return:
 		"""
-		if name != '':
+		if name:
 			self.data["name"] = name
 
 	def setCommand(self, command, TransferToServer=True):
@@ -115,7 +115,7 @@ class Block:
 		:param nocheck:
 		:return:
 		"""
-		if service != '':
+		if service:
 			result = True
 			if not nocheck:
 				if not checkClass(service, 'services'):
@@ -134,7 +134,7 @@ class Block:
 		:param nocheck:
 		:return:
 		"""
-		if parser != '':
+		if parser:
 			if not nocheck:
 				if not checkClass(parser, 'parsers'):
 					if parser != 'none':
@@ -494,7 +494,7 @@ class Block:
 	def fillTasks(self):
 		"""Missing DocString
 		"""
-		if len(self.tasks):
+		if self.tasks:
 			self.data["tasks"] = []
 			for task in self.tasks:
 				self.data["tasks"].append(task.data)
@@ -523,7 +523,7 @@ class Job:
 		:param name:
 		:return:
 		"""
-		if name is not None and len(name):
+		if name:
 			self.data["name"] = name
 
 	def setUserName(self, username):
@@ -532,7 +532,7 @@ class Job:
 		:param username:
 		:return:
 		"""
-		if username is not None and len(username):
+		if username:
 			self.data["user_name"] = username.lower()
 
 	def setPriority(self, priority):
@@ -613,7 +613,7 @@ class Job:
 		:param verbose:
 		:return:
 		"""
-		if len(self.blocks) == 0:
+		if not self.blocks:
 			print('Error: Job has no blocks')
 		# return False
 		self.fillBlocks()
@@ -772,7 +772,7 @@ class Cmd:
 		:param bool verbose:
 		:return:
 		"""
-		if self.action is None:
+		if not self.action:
 			print('ERROR: Action is not set.')
 			return None
 
@@ -781,7 +781,7 @@ class Cmd:
 		# print(json.dumps( obj))
 		output = afnetwork.sendServer(json.dumps(obj), receive, verbose)
 
-		if output[0] is True:
+		if output[0]:
 			return output[1]
 		else:
 			return None
@@ -795,7 +795,7 @@ class Cmd:
 		self.action = 'get'
 		self.data['type'] = 'jobs'
 		data = self._sendRequest()
-		if data is not None:
+		if data:
 			if 'jobs' in data:
 				return data['jobs']
 		return None
@@ -917,10 +917,10 @@ class Cmd:
 		"""
 		self.action = 'get'
 		self.data['type'] = 'renders'
-		if mask is not None:
+		if mask:
 			self.data['mask'] = mask
 		data = self._sendRequest()
-		if data is not None:
+		if data:
 			if 'renders' in data:
 				return data['renders']
 		return None
