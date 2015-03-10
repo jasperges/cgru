@@ -152,7 +152,7 @@ class Block:
 		:param int increment:
 		:return:
 		"""
-		if len(self.tasks):
+		if self.tasks:
 			print('Error: Block.setNumeric: Block already has tasks.')
 			return
 		if end < start:
@@ -473,7 +473,7 @@ class Block:
 				  'minimum.')
 			return False
 
-		if master_on_slave and service is None:
+		if master_on_slave and not service:
 			print('Error: Block::setMultiHost: Master in slave is enabled but '
 				  'service was not specified.')
 			return False
