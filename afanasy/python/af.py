@@ -774,7 +774,7 @@ class Cmd:
 		"""
 		if not self.action:
 			print('ERROR: Action is not set.')
-			return None
+			return
 
 		receive = (self.action == 'get')
 		obj = {self.action: self.data}
@@ -784,7 +784,7 @@ class Cmd:
 		if output[0]:
 			return output[1]
 		else:
-			return None
+			return
 
 	def getJobList(self, verbose=False):
 		"""Missing DocString
@@ -798,7 +798,7 @@ class Cmd:
 		if data:
 			if 'jobs' in data:
 				return data['jobs']
-		return None
+		return
 
 	def deleteJob(self, jobName, verbose=False):
 		"""Missing DocString
@@ -923,7 +923,7 @@ class Cmd:
 		if data:
 			if 'renders' in data:
 				return data['renders']
-		return None
+		return
 
 	def renderGetLocal(self):
 		"""Missing DocString
